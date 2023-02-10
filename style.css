@@ -1,22 +1,46 @@
-monthlyIncome=0
-function getIncome() {
-  monthlyIncome = parseInt(prompt("Please enter your montly income: $", "0"));
-  if (monthlyIncome != null) {
-    document.getElementById("inc").innerHTML =
-    "This is your monthly income: $" + monthlyIncome;
-  }
+html, 
+
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: #b4def9;
+}
+header {
+  
+}
+/*sets the navigation list and link styles*/
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1pt black;
+  background-color: silver;
+}
+
+nav ul li {
+  float: left;
+}
+
+nav ul li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav ul li a:hover:not(.active) {
+  background-color: #fff0f5;
+}
+
+nav ul li a.active {
+  color: white;
+  background-color: #4CAF50;
 }
 
 
-
-function catergories(){
-  var necc = parseInt(.50*monthlyIncome)
-  var wants = parseInt(.30*monthlyIncome)
-  var savings = parseInt(.20*monthlyIncome)
-  document.getElementById("cat").innerHTML =
-    "This is what you should spend on neccessities this month: $"+necc;
-  document.getElementById("cat2").innerHTML =
-    "This is what you should spend on wants this month: $" + wants;
-  document.getElementById("cat3").innerHTML =
-    "This is what you should put into your savings account this month: $" + savings;
+/*put a border around the footer*/
+footer {
+  clear: both;
+  border: thin solid silver;
 }
