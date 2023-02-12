@@ -76,29 +76,26 @@
     var necc = parseInt(.50*monthlyIncome)
     var wants = parseInt(.30*monthlyIncome)
     var savings = parseInt(.20*monthlyIncome)
-    document.getElementById("cat").innerHTML =
+    document.getElementById("neccessities").innerHTML =
     "This is what you should spend on neccessities this month: $"+necc;
-    document.getElementById("cat2").innerHTML =
+    document.getElementById("wants").innerHTML =
     "This is what you should spend on wants this month: $" + wants;
-    document.getElementById("cat3").innerHTML =
+    document.getElementById("savings").innerHTML =
     "This is what you should put into your savings account this month: $" + savings;
 }
 </script>
 
-<p id="income"> Click the button to begin you saving journey.</p>
-<button type="button" onclick="getIncome()">try</button>
+<p id="income"> Click the button to begin you savings journey.</p>
+<button type="button" onclick="getIncome()">Click to enter monthly income</button>
 
-<button onclick="catergories()">Try it</button>
-<p id="cat"></p>
-<p id="cat2"></p>
-<p id="cat3"></p>
+<button onclick="catergories()">Click to see the perfect breakdown of spending categories</button>
 
-
-
+<p id="neccessities">This is what you should spend on neccessities this month: $</p>
+<p id="wants">This is what you should spend on wants this month: $</p>
+<p id="savings">This is what you should put into your savings account this month: $</p>
 
 
 
-<p id="inc"></p>
 
 
 
