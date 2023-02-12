@@ -61,12 +61,29 @@
 <img src="financiallyfit.png" alt="picture" >
 <h2> FinanciallyFit</h2>
 
-<button onclick="getIncome()">Click on Button to Input your Income</button>
+<button onclick="getIncome()">Orig Not work</button>
 
 <button type="button" onclick="alert('Hello! I am an alert box!!')">ALERT</button>
 
 
 <button onclick= "window.prompt('Please enter your montly income: $')">Click on Button to Input your Income</button>
+
+
+
+
+<script>
+  function test(){
+    document.getElementById("demo").innerHTML="THIS IS NOT CHANGED"
+  }
+
+</script>
+
+<p id="demo"> not changed.</p>
+
+
+
+<button type="button" onclick="test()">try</button>
+
 
 
 
