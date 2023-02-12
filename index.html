@@ -61,15 +61,6 @@
 <img src="financiallyfit.png" alt="picture" >
 <h2> FinanciallyFit</h2>
 
-<button onclick="getIncome()">Orig Not work</button>
-
-<button type="button" onclick="alert('Hello! I am an alert box!!')">ALERT</button>
-
-
-<button onclick= "window.prompt('Please enter your montly income: $')">Click on Button to Input your Income</button>
-
-
-
 
 <script>
   monthlyIncome=0
@@ -79,13 +70,30 @@
       document.getElementById("income").innerHTML =
       "This is your monthly income: $" + monthlyIncome;
     }
-    
-}
+  }
 
+  function catergories(){
+    var necc = parseInt(.50*monthlyIncome)
+    var wants = parseInt(.30*monthlyIncome)
+    var savings = parseInt(.20*monthlyIncome)
+    document.getElementById("cat").innerHTML =
+    "This is what you should spend on neccessities this month: $"+necc;
+    document.getElementById("cat2").innerHTML =
+    "This is what you should spend on wants this month: $" + wants;
+    document.getElementById("cat3").innerHTML =
+    "This is what you should put into your savings account this month: $" + savings;
+}
 </script>
 
-<p id="income"> not changed.</p>
+<p id="income"> Click the button to begin you saving journey.</p>
 <button type="button" onclick="getIncome()">try</button>
+
+<button onclick="catergories()">Try it</button>
+<p id="cat"></p>
+<p id="cat2"></p>
+<p id="cat3"></p>
+
+
 
 
 
