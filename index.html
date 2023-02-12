@@ -63,12 +63,14 @@
 
 <button onclick="getIncome()">Click on Button to Input your Income</button>
 
-<button type="button" onclick="alert('Hello world!')">Click Me!</button>
 
+<button onclick= window.prompt("Please enter your montly income: $", "0")>Click on Button to Input your Income</button>
 
-<button onclick= window.prompt("hempl")>Click on Button to Input your Income</button>
+let sign = prompt("What's your sign?");
 
-
+if (sign.toLowerCase() === "scorpio") {
+  alert("Wow! I'm a Scorpio too!");
+}
 
 
 <p id="inc"></p>
