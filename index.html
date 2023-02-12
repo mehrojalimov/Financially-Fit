@@ -76,13 +76,23 @@
     document.getElementById("demo").innerHTML="THIS IS NOT CHANGED"
   }
 
+  monthlyIncome=0
+  function getIncome() {
+    monthlyIncome = parseInt(prompt("Please enter your montly income: $", "0"));
+    if (monthlyIncome != null) {
+      document.getElementById("income").innerHTML =
+      "This is your monthly income: $" + monthlyIncome;
+    }
+}
+
 </script>
 
 <p id="demo"> not changed.</p>
 
-
-
 <button type="button" onclick="test()">try</button>
+
+<p id="income"> not changed.</p>
+<button type="button" onclick="getIncome()">try</button>
 
 
 
