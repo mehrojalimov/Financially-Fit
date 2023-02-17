@@ -24,6 +24,7 @@ function catergories(){
 let wantsTotal = 0;
 let needsTotal = 0;
 let savingsTotal = 0;
+let spendingData = [];
       
 function submitSpending() {
   let statement = document.getElementById("statement").value;
@@ -38,7 +39,9 @@ function submitSpending() {
     savingsTotal += spending;
   }
 
+  spendingData.push({statement: statement, spending: spending, category: category});
   updateSpendingSummary();
+  updateSpendingTable();
 }
       
 function updateSpendingSummary() {
@@ -53,4 +56,18 @@ function updateSpendingSummary() {
   document.getElementById("needs-percentage").innerHTML = needsPercentage.toFixed(2);
   document.getElementById("savings-total").innerHTML = savingsTotal.toFixed(2);
   document.getElementById("savings-percentage").innerHTML = savingsPercentage.toFixed(2);
+}
+
+function updateSpendingTable() {
+  let tableBody = document.getElementById("spending-table-body");
+  tableBody.innerHTML = "";
+  spendingData.forEach(function(entry) {
+    let row = tableBody.insertRow(-1);
+    let statementCell = row.insertCell(0);
+    let spendingCell = row.insertCell(1);
+    let categoryCell = row.insertCell(2);
+    statementCell.innerHTML = entry.statement;
+    spendingCell.innerHTML = entry.spending.toFixed(2);
+    categoryCell.innerHTML = entry.category;
+  });
 }
