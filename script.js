@@ -71,3 +71,29 @@ function updateSpendingTable() {
     categoryCell.innerHTML = entry.category;
   });
 }
+$(function() {
+
+  $('button#nav-a').click(function(event) {
+  localStorage.setItem("text", "nav-a");
+  });
+
+  $('button#nav-b').click(function(event) {
+  localStorage.setItem("text", "nav-b");
+  });
+
+  /*and so on...*/
+
+  var path = window.location.pathname;
+  var pathSub = path.substring(path.lastIndexOf("/") + 1, path.length)
+
+  if(pathSub == "AboutUs.html"){
+      document.getElementById(localStorage.getItem('text')).click();
+  }
+  if(pathSub == "index.html"){
+    document.getElementById(localStorage.getItem('text')).click();
+}
+if(pathSub == "Login.html"){
+  document.getElementById(localStorage.getItem('text')).click();
+}
+}) 
+//function tabList() {}
