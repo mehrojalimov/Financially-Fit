@@ -1,0 +1,10 @@
+{
+    "name": "financiallyfit",
+    "version": "0.0.1",
+    "description": "Website that allows you to finance your spendings and savings",
+    "main": "script.js",
+    "license": "MIT",
+    "dependencies": {
+        "passport-google-oauth": "^2.0.0"
+    }
+}
