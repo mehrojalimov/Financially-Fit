@@ -1,5 +1,5 @@
 var express = require('express');
-var db = require('../google-tutorial/db');
+var db = require('../db');
 
 function fetchTodos(req, res, next) {
   db.all('SELECT * FROM todos WHERE owner_id = ?', [
