@@ -97,4 +97,5 @@ if(pathSub == "Login.html"){
   document.getElementById(localStorage.getItem('text')).click();
 }
 }) 
+
 //function tabList() {}
