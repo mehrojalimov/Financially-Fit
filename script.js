@@ -1,3 +1,4 @@
+
 monthlyIncome=0
 function getIncome() {
   monthlyIncome = parseInt(prompt("Please enter your montly income: $", "0"));

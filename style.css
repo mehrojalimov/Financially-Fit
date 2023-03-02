@@ -2,8 +2,16 @@ html,
 
 body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: #b4def9;
+
+  background-image: linear-gradient(purple , blue, green);
+  line-height: 38x;
+  font-weight: 600;
+  font-size: 1.125rem;
+
+
+  align-items: center;
 }
+
 header {
   
 }
