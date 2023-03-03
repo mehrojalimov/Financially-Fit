@@ -1,0 +1,44 @@
+<html>
+  <head>
+      <title>JavaScript Pie Chart</title>
+      <!-- Scripts taken from https://www.anychart.com -->
+      <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-core.min.js"></script>
+      <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-pie.min.js"></script> 
+  </head>
+  <body>
+    <div id="container" style="width: 100%; height: 100%"></div>
+    <script>
+      anychart.onDocumentReady(function() {
+        // set the data
+        var data = [
+          {x: "Entertainment", value: 1000, exploded: true},
+          {x: "Shopping", value: 2000},
+          {x: "Savings", value: 3000},
+          {x: "Education", value: 2000},
+          {x: "Needs", value: 2000},
+        ];
+
+        // create the chart
+        var chart = anychart.pie();
+
+        // set the chart title
+        chart.title("YOUR FINANCIAL CHART");
+
+        // add the data
+        chart.data(data);
+
+        // sort elements
+        chart.sort("desc");  
+
+        // set legend position
+        chart.legend().position("right");
+        // set items layout
+        chart.legend().itemsLayout("vertical");  
+
+        // display the chart in the container
+        chart.container("container");
+        chart.draw();
+      });
+    </script>
+  </body>
+</html>
