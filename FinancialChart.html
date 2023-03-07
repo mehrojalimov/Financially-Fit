@@ -1,43 +1,103 @@
+<!DOCTYPE html>
 <html>
   <head>
-      <title>JavaScript Pie Chart</title>
-      <!-- Scripts taken from https://www.anychart.com -->
-      <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-core.min.js"></script>
-      <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-pie.min.js"></script> 
+    <div class="tab">
+        <button class="tablinks">
+          <a id="nav-b" href="index.html">Home</a>
+        </button>
+        <button class="tablinks">
+          <a id="nav-b" href="AboutUs.html">About Us</a>
+        </button>
+        <button class="tablinks">
+          <a id="nav-b" href="Login.html">Login</a>
+        </button>
+        <button class="tablinks">
+          <a id="nav-b" href="FinancialChart.html">Financial Chart</a>
+        </button>
+      </div>
+      
+    <title>Pie Chart</title>
+    <style>
+      canvas {
+        width: 800px;
+        height: 400px;
+        /* Change the width and height values as per your requirement */
+      }
+      .chart-container {
+        width: 60%;
+        margin: auto;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-    <div id="container" style="width: 100%; height: 100%"></div>
+    <div class="chart-container">
+      <canvas id="myChart"></canvas>
+    </div>
     <script>
-      anychart.onDocumentReady(function() {
-        // set the data
-        var data = [
-          {x: "Entertainment", value: 1000, exploded: true},
-          {x: "Shopping", value: 2000},
-          {x: "Savings", value: 3000},
-          {x: "Education", value: 2000},
-          {x: "Needs", value: 2000},
-        ];
+      // set the data
+      var data = {
+        labels: ["Entertainment", "Shopping", "Savings", "Education", "Needs"],
+        datasets: [
+          {
+            label: "The Money You Spent ($)",
+            data: [1000, 2000, 3000, 2000, 2000],
+            backgroundColor: [
+              "#FF6384",
+              "#36A2EB",
+              "#FFCE56",
+              "#2ECC71",
+              "#FF9900",
+            ],
+            hoverBackgroundColor: [
+              "#FF6384",
+              "#36A2EB",
+              "#FFCE56",
+              "#2ECC71",
+              "#FF9900",
+            ],
+          },
+        ],
+      };
 
-        // create the chart
-        var chart = anychart.pie();
+      // calculate the percentage values
+      var total = data.datasets[0].data.reduce(function (acc, value) {
+        return acc + value;
+      }, 0);
+      var percentageValues = data.datasets[0].data.map(function (value) {
+        return ((value / total) * 100).toFixed(2) + "%";
+      });
 
-        // set the chart title
-        chart.title("YOUR FINANCIAL CHART");
+      // add the percentage values to the labels
+      data.labels = data.labels.map(function (label, index) {
+        return label + " (" + percentageValues[index] + ")";
+      });
 
-        // add the data
-        chart.data(data);
-
-        // sort elements
-        chart.sort("desc");  
-
-        // set legend position
-        chart.legend().position("right");
-        // set items layout
-        chart.legend().itemsLayout("vertical");  
-
-        // display the chart in the container
-        chart.container("container");
-        chart.draw();
+      // create the chart
+      var canvas = document.getElementById("myChart");
+      var ctx = canvas.getContext("2d");
+      var chart = new Chart(ctx, {
+        type: "pie",
+        data: data,
+        options: {
+          legend: {
+            position: "right",
+          },
+          plugins: {
+            tooltip: {
+              bodyFont: {
+                size: 16, // change the font size of the labels here
+              },
+            },
+            legend: {
+              labels: {
+                font: {
+                  size: 18, // change the font size of the legend here
+                },
+              },
+            },
+          },
+        },
       });
     </script>
   </body>
