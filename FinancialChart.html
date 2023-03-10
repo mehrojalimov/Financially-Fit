@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <div class="tab">
+        <button class="tablinks">
+          <a id="nav-b" href="index.html">Home</a>
+        </button>
+        <button class="tablinks">
+          <a id="nav-b" href="AboutUs.html">About Us</a>
+        </button>
+        <button class="tablinks">
+          <a id="nav-b" href="Login.html">Login</a>
+        </button>
+        <button class="tablinks">
+          <a id="nav-b" href="FinancialChart.html">Financial Chart</a>
+        </button>
+      </div>
+      
+    <title>Pie Chart</title>
+    <style>
+      canvas {
+        width: 800px;
+        height: 400px;
+        /* Change the width and height values as per your requirement */
+      }
+      .chart-container {
+        width: 60%;
+        margin: auto;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="chart-container">
+      <canvas id="myChart"></canvas>
+    </div>
+    <script>
+      // set the data
+      var data = {
+        labels: ["Entertainment", "Shopping", "Savings", "Education", "Needs"],
+        datasets: [
+          {
+            label: "The Money You Spent ($)",
+            data: [1000, 2000, 3000, 2000, 2000],
+            backgroundColor: [
+              "#FF6384",
+              "#36A2EB",
+              "#FFCE56",
+              "#2ECC71",
+              "#FF9900",
+            ],
+            hoverBackgroundColor: [
+              "#FF6384",
+              "#36A2EB",
+              "#FFCE56",
+              "#2ECC71",
+              "#FF9900",
+            ],
+          },
+        ],
+      };
+
+      // calculate the percentage values
+      var total = data.datasets[0].data.reduce(function (acc, value) {
+        return acc + value;
+      }, 0);
+      var percentageValues = data.datasets[0].data.map(function (value) {
+        return ((value / total) * 100).toFixed(2) + "%";
+      });
+
+      // add the percentage values to the labels
+      data.labels = data.labels.map(function (label, index) {
+        return label + " (" + percentageValues[index] + ")";
+      });
+
+      // create the chart
+      var canvas = document.getElementById("myChart");
+      var ctx = canvas.getContext("2d");
+      var chart = new Chart(ctx, {
+        type: "pie",
+        data: data,
+        options: {
+          legend: {
+            position: "right",
+          },
+          plugins: {
+            tooltip: {
+              bodyFont: {
+                size: 16, // change the font size of the labels here
+              },
+            },
+            legend: {
+              labels: {
+                font: {
+                  size: 18, // change the font size of the legend here
+                },
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
