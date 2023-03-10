@@ -92,9 +92,12 @@ $(function() {
   }
   if(pathSub == "index.html"){
     document.getElementById(localStorage.getItem('text')).click();
-}
-if(pathSub == "Login.html"){
-  document.getElementById(localStorage.getItem('text')).click();
-}
+  }
+  if(pathSub == "Login.html"){
+    document.getElementById(localStorage.getItem('text')).click();
+  }
+    if(pathSub == "FinancialChart.html"){
+    document.getElementById(localStorage.getItem('text')).click();
+  }
 }) 
 //function tabList() {}
