@@ -6,9 +6,5 @@
     "license": "MIT",
     "dependencies": {
         "passport-google-oauth": "^2.0.0"
-    },
-    "scripts": {
-        "start": "npm run open",
-        "open": " \"http-server -a localhost -p 3000\" \"open http://localhost:3000\""
-     }
+    }
 }
