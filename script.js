@@ -82,6 +82,7 @@ $(function() {
   localStorage.setItem("text", "nav-b");
   });
 
+  /*and so on...*/
 
   var path = window.location.pathname;
   var pathSub = path.substring(path.lastIndexOf("/") + 1, path.length)
@@ -95,7 +96,8 @@ $(function() {
   if(pathSub == "Login.html"){
     document.getElementById(localStorage.getItem('text')).click();
   }
-  if(pathSub == "FinancialChart.html"){
+    if(pathSub == "FinancialChart.html"){
     document.getElementById(localStorage.getItem('text')).click();
   }
 }) 
+//function tabList() {}

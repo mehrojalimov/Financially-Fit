@@ -1,8 +1,7 @@
 html, 
 
 body {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif,;
-  
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
   background-image: linear-gradient(purple , blue, green);
   line-height: 38x;
@@ -48,7 +47,7 @@ nav ul li a.active {
 }
 
 
-/*put a border around the footer*/
+/*Savit Code*/
 footer {
   clear: both;
   border: thin solid silver;
