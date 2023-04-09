@@ -152,6 +152,9 @@ form {
 <h1><br>Customized Plan</h2>
 
 <script>
+  customNec=0
+  customWants=0
+  customNeeds=0
   
   function customFunc() {
     customNec = parseInt(prompt("Please enter the percentage you want to spend on neccessities: %", "0"));
@@ -160,16 +163,17 @@ form {
 
     if (monthlyIncome != null) {
       document.getElementById("custom").innerHTML =
-      "This is your custom percentage breakdown:" + customNec+"for neccessitites"+customWants+"for wants"+customNeeds+"for needs";
+      "This is your custom percentage breakdown: " + customNec+"% for neccessitites"+customWants+"% for wants"+customNeeds+"% for needs";
 
 
     }
   }
 
   function catergories(){
-    var necc = parseInt(.50*monthlyIncome)
-    var wants = parseInt(.30*monthlyIncome)
-    var savings = parseInt(.20*monthlyIncome)
+
+    var necc = parseInt(customNec/100*monthlyIncome)
+    var wants = parseInt(customWants/100*monthlyIncome)
+    var savings = parseInt(customNeeds/100*monthlyIncome)
     document.getElementById("customNeccessities").innerHTML =
     "This is what you should spend on neccessities this month: $"+necc;
     document.getElementById("customWants").innerHTML =
