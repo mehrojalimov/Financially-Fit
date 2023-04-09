@@ -59,18 +59,34 @@
 <style>
 
 h2   {
-  color: black;
+  color: white;
   font-family:timesnewroman;
+  font-size: 220%;
 }
 
 p    {
-  color: black;
+  color: white;
   font-family:timesnewroman;
   }
 h1  {
-  color:black;
+  color:white;
   font-family:timesnewroman;
   font-size:150%;
+}
+label {
+  color:white;
+}
+th{
+  color:white;
+}
+option {
+  color:white;
+}
+li {
+  color:white;
+}
+form {
+  color:white
 }
 </style>
 
@@ -100,8 +116,8 @@ h1  {
 }
 </script>
 
-<p id="income"> Click the button to begin you savings journey.</p>
-<button type="button" onclick="getIncome()">Click here to enter monthly income</button>
+<h1><p id="income"> Click the button to begin you savings journey.</p></h1>
+<button type="button" onclick="getIncome()">Click to here enter monthly income</button>
 
 <button onclick="catergories()">Click here to see the perfect breakdown of spending categories</button>
 
@@ -132,14 +148,11 @@ h1  {
     
   </p>
 
-<!--
-  <h1>Upload your PDF</h1>
+<h1>Upload your PDF</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="pdf" accept=".pdf"><br><br>
         <input type="submit" value="Upload">
     </form>
--->
-
 
 <h1>Spending Tracker</h1>
     <form>
@@ -155,13 +168,13 @@ h1  {
       </select><br><br>
       <input type="button" value="Submit" onclick="submitSpending()">
     </form>
-    <h2>Spending Summary</h2>
+    <h1>Spending Summary</h1>
     <ul>
       <li>Wants: <span id="wants-total"></span> (<span id="wants-percentage"></span>%)</li>
       <li>Needs: <span id="needs-total"></span> (<span id="needs-percentage"></span>%)</li>
       <li>Savings: <span id="savings-total"></span> (<span id="savings-percentage"></span>%)</li>
     </ul>
-    <h2>Spending Table</h2>
+    <h1>Spending Table</h1>
     <table>
       <tr>
         <th>Statement</th>
