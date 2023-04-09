@@ -148,6 +148,54 @@ form {
     
   </p>
 
+
+<h1><br>Customized Plan</h2>
+
+<script>
+  
+  function customFunc() {
+    customNec = parseInt(prompt("Please enter the percentage you want to spend on neccessities: %", "0"));
+    customWants = parseInt(prompt("Please enter the percentage you want to spend on wants: %", "0"));
+    customNeeds = parseInt(prompt("Please enter the percentage you want to spend on needs:  %", "0"));
+
+    if (monthlyIncome != null) {
+      document.getElementById("custom").innerHTML =
+      "This is your custom percentage breakdown:" + customNec+"for neccessitites"+customWants+"for wants"+customNeeds+"for needs";
+
+
+    }
+  }
+
+  function catergories(){
+    var necc = parseInt(.50*monthlyIncome)
+    var wants = parseInt(.30*monthlyIncome)
+    var savings = parseInt(.20*monthlyIncome)
+    document.getElementById("customNeccessities").innerHTML =
+    "This is what you should spend on neccessities this month: $"+necc;
+    document.getElementById("customWants").innerHTML =
+    "This is what you should spend on wants this month: $" + wants;
+    document.getElementById("customSavings").innerHTML =
+    "This is what you should put into your savings account this month: $" + savings;
+}
+</script>
+
+<h1><p id="custom"> Click the button to make a customized plan.</p></h1>
+<button type="button" onclick="customFunc()">Click the button to make a customized plan.</button>
+
+<button onclick="catergories()">Click here to see your custom breakdown</button>
+
+<p id="customNeccessities">This is what you should spend on neccessities this month: $</p>
+<p id="customWants">This is what you should spend on wants this month: $</p>
+<p id="customSavings">This is what you should put into your savings account this month: $</p>
+
+
+
+
+
+
+
+
+
 <h1>Upload your PDF</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="pdf" accept=".pdf"><br><br>
