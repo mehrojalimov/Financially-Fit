@@ -160,11 +160,11 @@ form {
   function customFunc() {
     customNec = parseInt(prompt("Please enter the percentage you want to spend on neccessities: %", "0"));
     customWants = parseInt(prompt("Please enter the percentage you want to spend on wants: %", "0"));
-    customSav = parseInt(prompt("Please enter the percentage you want to spend on needs:  %", "0"));
+    customSav = parseInt(prompt("Please enter the percentage you want to spend on savings:  %", "0"));
 
     if (monthlyIncome != null) {
       document.getElementById("custom").innerHTML =
-      "This is your custom percentage breakdown: " + customNec+"% for neccessitites, "+customWants+"% for wants, "+customNeeds+"% for needs";
+      "This is your custom percentage breakdown: " + customNec+"% for neccessitites, "+customWants+"% for wants, "+customSav+"% for needs";
     }
   }
 
