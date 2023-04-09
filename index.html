@@ -170,7 +170,10 @@ form {
 
   function catergories(){
     monthlyIncome = parseInt(prompt("Please enter your montly income: $", "0"));
-
+    if (monthlyIncome != null) {
+      document.getElementById("monIncome").innerHTML =
+      "This is your monthly income: $" + monthlyIncome;
+    }
     var necc = parseInt(customNec/100*monthlyIncome)
     var wants = parseInt(customWants/100*monthlyIncome)
     var savings = parseInt(customNeeds/100*monthlyIncome)
@@ -188,6 +191,7 @@ form {
 
 <button onclick="catergories()">Click here to see your custom breakdown</button>
 
+<p id="monIncome">This is your monthly income: $</p>
 <p id="customNeccessities">This is what you should spend on neccessities this month: $</p>
 <p id="customWants">This is what you should spend on wants this month: $</p>
 <p id="customSavings">This is what you should put into your savings account this month: $</p>
