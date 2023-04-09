@@ -169,10 +169,10 @@ form {
   }
 
   function custonCatergories(){
-    monthlyIncome = parseInt(prompt("Please enter your montly income: $", "0"));
-    if (monthlyIncome != null) {
+    monthlyIncomeCustom = parseInt(prompt("Please enter your montly income: $", "0"));
+    if (monthlyIncomeCustom != null) {
       document.getElementById("monIncome").innerHTML =
-      "This is your monthly income: $" + monthlyIncome;
+      "This is your monthly income: $" + monthlyIncomeCustom;
     }
     var necc = parseInt(customNec/100*monthlyIncome)
     var wants = parseInt(customWants/100*monthlyIncome)
