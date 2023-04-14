@@ -151,6 +151,62 @@ tbody {
     
   </p>
 
+
+<h1><br>Customized Plan</h2>
+
+<script>
+  customNec=0
+  customWants=0
+  customSav=0
+  monthlyIncome=0
+  
+  function customFunc() {
+    customNec = parseInt(prompt("Please enter the percentage you want to spend on neccessities: %", "0"));
+    customWants = parseInt(prompt("Please enter the percentage you want to spend on wants: %", "0"));
+    customSav = parseInt(prompt("Please enter the percentage you want to spend on savings:  %", "0"));
+
+    if (monthlyIncome != null) {
+      document.getElementById("custom").innerHTML =
+      "This is your custom percentage breakdown: " + customNec+"% for neccessitites, "+customWants+"% for wants, "+customSav+"% for needs";
+    }
+  }
+
+  function customCatergories(){
+    monthlyIncomeCustom = parseInt(prompt("Please enter your montly income: $", "0"));
+    if (monthlyIncomeCustom != null) {
+      document.getElementById("monIncome").innerHTML =
+      "This is your monthly income: $" + monthlyIncomeCustom;
+    }
+    var necc = parseInt(customNec/100*monthlyIncomeCustom)
+    var wants = parseInt(customWants/100*monthlyIncomeCustom)
+    var savings = parseInt(customSav/100*monthlyIncomeCustom)
+    document.getElementById("customNeccessities").innerHTML =
+    "This is what you should spend on neccessities this month: $"+necc;
+    document.getElementById("customWants").innerHTML =
+    "This is what you should spend on wants this month: $" + wants;
+    document.getElementById("customSavings").innerHTML =
+    "This is what you should put into your savings account this month: $" + savings;
+}
+</script>
+
+<h1><p id="custom"> Click the button to make a customized plan.</p></h1>
+<button type="button" onclick="customFunc()">Click the button to make a customized plan.</button>
+
+<button onclick="customCatergories()">Click here to see your custom breakdown</button>
+
+<p id="monIncome">This is your monthly income: $</p>
+<p id="customNeccessities">This is what you should spend on neccessities this month: $</p>
+<p id="customWants">This is what you should spend on wants this month: $</p>
+<p id="customSavings">This is what you should put into your savings account this month: $</p>
+
+
+
+
+
+
+
+
+
 <h1>Upload your PDF</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="pdf" accept=".pdf"><br><br>
