@@ -177,48 +177,14 @@ form {
 <p id="customSavings">This is what you should put into your savings account this month: $</p>
 
 
-
-
-
-
-
-
-
+<!--
 <h1>Upload your PDF</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="pdf" accept=".pdf"><br><br>
         <input type="submit" value="Upload">
     </form>
+-->
 
-<h1>Spending Tracker</h1>
-    <form>
-      <label for="statement">Statement:</label>
-      <input type="text" id="statement" name="statement"><br><br>
-      <label for="spending">Spending:</label>
-      <input type="number" id="spending" name="spending"><br><br>
-      <label for="category">Category:</label>
-      <select id="category" name="category">
-        <option value="wants">Wants</option>
-        <option value="needs">Needs</option>
-        <option value="savings">Savings</option>
-      </select><br><br>
-      <input type="button" value="Submit" onclick="submitSpending()">
-    </form>
-    <h1>Spending Summary</h1>
-    <ul>
-      <li>Wants: <span id="wants-total"></span> (<span id="wants-percentage"></span>%)</li>
-      <li>Needs: <span id="needs-total"></span> (<span id="needs-percentage"></span>%)</li>
-      <li>Savings: <span id="savings-total"></span> (<span id="savings-percentage"></span>%)</li>
-    </ul>
-    <h1>Spending Table</h1>
-    <table>
-      <tr>
-        <th>Statement</th>
-        <th>Spending</th>
-        <th>Category</th>
-      </tr>
-      <tbody id="spending-table-body"></tbody>
-    </table>
 </body>
 </home>
 </html>
