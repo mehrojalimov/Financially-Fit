@@ -139,8 +139,12 @@ form {
   
   function customFunc() {
     customNec = parseInt(prompt("Please enter the percentage you want to spend on neccessities: %", "0"));
-    customWants = parseInt(prompt("Please enter the percentage you want to spend on wants: %", "0"));
-    customSav = parseInt(prompt("Please enter the percentage you want to spend on savings:  %", "0"));
+    left=100-customNec
+    promptStringWan="You have "+left.toString()+"% left. Please enter the percentage you want to spend in wants: %"
+    customWants = parseInt(prompt(promptStringWan, "0"));
+    left=left-customWants
+    promptStringSav="You have "+left.toString()+"% left. Please enter the percentage you want to spend in savings: %"
+    customSav = parseInt(prompt(promptStringSav, "0"));
 
     if (monthlyIncome != null) {
       document.getElementById("custom").innerHTML =
