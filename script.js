@@ -101,3 +101,59 @@ $(function() {
   }
 }) 
 //function tabList() {}
+
+function updateChartData() {
+  const chartData = {};
+  numbers.forEach((number, index) => {
+    const category = data.labels[index];
+    if (chartData[category]) {
+      chartData[category].push(number);
+    } else {
+      chartData[category] = [number];
+    }
+  });
+  const chart = Chart.getChart("myChart");
+  chart.data.datasets = Object.keys(chartData).map(category => {
+    return {
+      label: category,
+      data: chartData[category],
+      backgroundColor: data.datasets[0].backgroundColor,
+      hoverBackgroundColor: data.datasets[0].hoverBackgroundColor,
+    };
+  });
+  chart.update();
+}
+
+
+
+let numbers = [];
+
+function addNumber() {
+  const categoryInput = document.getElementById("category");
+  const category = categoryInput.value;
+  const numberInput = document.getElementById("number");
+  const number = parseInt(numberInput.value);
+  if (!isNaN(number)) {
+    numbers.push(number);
+    updateNumberList();
+    updateChartData();
+  }
+  numberInput.value = "";
+}
+
+function updateNumberList() {
+  const numberList = document.getElementById("numberList");
+  numberList.innerHTML = "";
+  numbers.forEach(number => {
+    const li = document.createElement("li");
+    li.textContent = number;
+    numberList.appendChild(li);
+  });
+}
+
+function updateChartData() {
+  const chartData = numbers.slice(-5); // only use the last 5 numbers
+  const chart = Chart.getChart("myChart");
+  chart.data.datasets[0].data = chartData;
+  chart.update();
+}
