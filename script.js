@@ -100,4 +100,5 @@ $(function() {
     document.getElementById(localStorage.getItem('text')).click();
   }
 }) 
-//function tabList() {}
+
+
