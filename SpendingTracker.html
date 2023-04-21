@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<home>
+<body>
+
+<head>
+  <div class="tab">
+    <button class="tablinks">
+      <a id="nav-b" href="index.html">Home</a>
+    </button>
+
+    <button class="tablinks">
+        <a id="nav-b" href="SpendingTracker.html">SpendingTracker</a>
+    </button>
+
+    <button class="tablinks">
+      <a id="nav-b" href="AboutUs.html">About Us</a>
+    </button>
+    <button class="tablinks">
+      <a id="nav-b" href="Login.html">Login</a>
+    </button>
+    <button class="tablinks">
+        <a id="nav-b" href="FinancialChart.html">Financial Chart</a>
+    </button>
+    <button class="tablinks">
+      <a id="nav-b" href="LoanPayment.html">Loan Payment</a>
+  </button>
+
+  </div>
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>FinanciallyFit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="script.js" type="text/javascript"</script>
+  <script>getIncome();</script>
+</head>
+
+<style>
+
+h2   {
+  color: black;
+  font-family:timesnewroman;
+}
+
+p    {
+  color: black;
+  font-family:timesnewroman;
+  }
+h1  {
+  color:black;
+  font-family:timesnewroman;
+  font-size:150%;
+}
+</style>
+
+
+<h1 style="text-align:center; ">Spending Tracker</h1>
+
+    <form>
+      <label for="statement">Statement:</label>
+      <input type="text" id="statement" name="statement"><br><br>
+      <label for="spending">Spending:</label>
+      <input type="number" id="spending" name="spending"><br><br>
+      <label for="category">Category:</label>
+      <select id="category" name="category">
+        <option value="wants">Wants</option>
+        <option value="needs">Needs</option>
+        <option value="savings">Savings</option>
+      </select><br><br>
+      <input type="button" value="Submit" onclick="submitSpending()">
+    </form>
+    <h1>Spending Summary</h1>
+    <ul>
+      <li>Wants: <span id="wants-total"></span> (<span id="wants-percentage"></span>%)</li>
+      <li>Needs: <span id="needs-total"></span> (<span id="needs-percentage"></span>%)</li>
+      <li>Savings: <span id="savings-total"></span> (<span id="savings-percentage"></span>%)</li>
+    </ul>
+    <h1>Spending Table</h1>
+    <table>
+      <tr>
+        <th>Statement</th>
+        <th>Spending</th>
+        <th>Category</th>
+      </tr>
+      <tbody id="spending-table-body"></tbody>
+    </table>
+
+
+
+
+
+</body>
+</home>
+</html>

@@ -1,0 +1,6 @@
+git add .
+git commit -m "(insert message)"
+git push
+
+additionally, to go into a branch, do:
+git checkout (insert branch name)
