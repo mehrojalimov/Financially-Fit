@@ -138,7 +138,7 @@ form {
   monthlyIncome=0
   
   function customFunc() {
-    customNec = parseInt(prompt("Please enter the percentage you want to spend on neccessities: %", "0"));
+    customNec = parseInt(prompt("Please enter the percentage you want to spend on necessities: %", "0"));
     left=100-customNec
     promptStringWan="You have "+left.toString()+"% left. Please enter the percentage you want to spend in wants: %"
     customWants = parseInt(prompt(promptStringWan, "0"));
@@ -148,7 +148,7 @@ form {
 
     if (monthlyIncome != null) {
       document.getElementById("custom").innerHTML =
-      "This is your custom percentage breakdown: " + customNec+"% for neccessitites, "+customWants+"% for wants, "+customSav+"% for needs";
+      "This is your custom percentage breakdown: " + customNec+"% for necessities, "+customWants+"% for wants, "+customSav+"% for needs";
     }
   }
 
@@ -176,7 +176,7 @@ form {
 <button onclick="customCatergories()">Click here to see your custom breakdown</button>
 
 <p id="monIncome">This is your monthly income: $</p>
-<p id="customNeccessities">This is what you should spend on neccessities this month: $</p>
+<p id="customNeccessities">This is what you should spend on necessities this month: $</p>
 <p id="customWants">This is what you should spend on wants this month: $</p>
 <p id="customSavings">This is what you should put into your savings account this month: $</p>
 
