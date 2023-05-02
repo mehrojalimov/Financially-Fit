@@ -55,7 +55,30 @@ h1  {
   font-size:150%;
 }
 </style>
-
 </body>
 </home>
+
+<!DOCTYPE html>
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="loanCalculator">
+        <h2>Loan Calculator</h2>
+        <form>
+            <label for="loanAmount">Loan Amount:</label><br>
+            <input type="number" id="loanAmount" name="loanAmount"><br>
+            <label for="interestRate">Interest Rate (%):</label><br>
+            <input type="number" id="interestRate" name="interestRate"><br>
+            <label for="loanPeriod">Loan Period (Months):</label><br>
+            <input type="number" id="loanPeriod" name="loanPeriod"><br>
+            <input type="button" value="Calculate" onclick="calculateLoan()">
+        </form>
+        <p id="monthlyPayment"></p>
+        <p id="yearlyPayment"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>

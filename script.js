@@ -101,4 +101,24 @@ $(function() {
   }
 }) 
 
+function calculateLoan() {
+  // Getting the user inputs
+  var loanAmount = document.getElementById("loanAmount").value;
+  var interestRate = document.getElementById("interestRate").value / 100 / 12;
+  var loanPeriod = document.getElementById("loanPeriod").value;
+
+  // Calculating the monthly payment
+  var x = Math.pow(1 + interestRate, loanPeriod);
+  var monthly = (loanAmount * x * interestRate) / (x - 1);
+  if (!isNaN(monthly) && 
+      (monthly != Infinity) && 
+      (monthly != -Infinity)) {
+      
+      document.getElementById("monthlyPayment").innerHTML = "Monthly Payment: $" + monthly.toFixed(2);
+      document.getElementById("yearlyPayment").innerHTML = "Yearly Payment: $" + (monthly * 12).toFixed(2);
+  } else {
+      document.getElementById("monthlyPayment").innerHTML = "Please enter valid values.";
+      document.getElementById("yearlyPayment").innerHTML = "";
+  }
+}
 
