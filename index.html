@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
 <home>
-<body>
 
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>FinanciallyFit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="script.js" type="text/javascript"></script>
+  
+</head>
+
+<body>
   <div class="tab">
     <button class="tablinks">
       <a id="nav-b" href="index.html">Home</a>
@@ -31,13 +39,80 @@
   </div>
   
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>FinanciallyFit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <script src="script.js" type="text/javascript"</script>
-  <script>getIncome();</script>
-</head>
+  <button id="showButton" class="custom-button">Click Me to Begin your Financial Monitoring Journey!</button>
+
+  
+  <div id="hiddenSection" style="display:none;">
+  
+  <img src="financiallyfit.png" alt="picture" class="center">
+  <h2>FinanciallyFit</h2>
+  
+  <h1><p id="income"> Click the button to begin you savings journey.</p></h1>
+  <button type="button" onclick="getIncome()">Click here to enter monthly income</button>
+  
+  <button onclick="catergories()">Click here to see the perfect breakdown of spending categories</button>
+  
+  <p id="neccessities">This is what you should spend on neccessities this month: $</p>
+  <p id="wants">This is what you should spend on wants this month: $</p>
+  <p id="savings">This is what you should put into your savings account this month: $</p>
+  
+  <h1><br>The 50.30.20 Rule</h2>
+  <p>
+    20 percent of your income should go to savings and retirement <br>
+    50 percent going towards necessities, like rent and bills  <br>
+    30 percent towards your wants <br>
+  <br>
+  
+    Necessities: 50% of your paycheck <br>
+    &emsp;This category of spending includes money spent on groceries, housing, transportation, insurance(Health/Car/etc), and minimum debt payments.
+    <br>
+    <br>
+  
+    Wants: 30% of your paycheck <br>
+    &emsp;This category of spending includes money spent on take-out, hobbies, clothing/accessories, memberships/subscriptions, WiFi, travel, and extra debt payments. 
+    <br>
+    <br>
+  
+    Savings: 20% of your paycheck <br>
+    &emsp;This category of spending includes money spent on savings plans, emergency funds, retirement accounts, and investments. 
+    <br>
+      
+    </p>
+  
+  
+  <h1><br>Customized Plan</h2>
+  
+  
+  
+  <h1><p id="custom"> Click the button to make a customized plan.</p></h1>
+  <button type="button" onclick="customFunc()">Click here to make a customized plan.</button>
+  
+  <button onclick="customCatergories()">Click here to see your custom breakdown</button>
+  
+  <p id="monIncome">This is your monthly income: $</p>
+  <p id="customNeccessities">This is what you should spend on necessities this month: $</p>
+  <p id="customWants">This is what you should spend on wants this month: $</p>
+  <p id="customSavings">This is what you should put into your savings account this month: $</p>
+   
+  </div>
+
+ <script>
+  document.getElementById("showButton").addEventListener("click", function() {
+  var hiddenSection = document.getElementById("hiddenSection");
+  var showButton=document.getElementById("showButton")
+
+  // Toggle the display of the hidden section
+  if (hiddenSection.style.display === "none") {
+    hiddenSection.style.display = "block";
+  } else {
+    hiddenSection.style.display = "none";
+  }
+  showButton.style.display="none";
+});
+  
+  </script>
+
+
 
 <style>
 
@@ -73,9 +148,6 @@ form {
 }
 </style>
 
-<img src="financiallyfit.png" alt="picture" class="center">
-<h2>FinanciallyFit</h2>
-
 <script>
   monthlyIncome=0
   function getIncome() {
@@ -98,41 +170,6 @@ form {
     "This is what you should put into your savings account this month: $" + savings;
 }
 </script>
-
-<h1><p id="income"> Click the button to begin you savings journey.</p></h1>
-<button type="button" onclick="getIncome()">Click here to enter monthly income</button>
-
-<button onclick="catergories()">Click here to see the perfect breakdown of spending categories</button>
-
-<p id="neccessities">This is what you should spend on neccessities this month: $</p>
-<p id="wants">This is what you should spend on wants this month: $</p>
-<p id="savings">This is what you should put into your savings account this month: $</p>
-
-<h1><br>The 50.30.20 Rule</h2>
-<p>
-  20 percent of your income should go to savings and retirement <br>
-  50 percent going towards necessities, like rent and bills  <br>
-  30 percent towards your wants <br>
-<br>
-
-  Necessities: 50% of your paycheck <br>
-  &emsp;This category of spending includes money spent on groceries, housing, transportation, insurance(Health/Car/etc), and minimum debt payments.
-  <br>
-  <br>
-
-  Wants: 30% of your paycheck <br>
-  &emsp;This category of spending includes money spent on take-out, hobbies, clothing/accessories, memberships/subscriptions, WiFi, travel, and extra debt payments. 
-  <br>
-  <br>
-
-  Savings: 20% of your paycheck <br>
-  &emsp;This category of spending includes money spent on savings plans, emergency funds, retirement accounts, and investments. 
-  <br>
-    
-  </p>
-
-
-<h1><br>Customized Plan</h2>
 
 <script>
   customNec=0
@@ -173,24 +210,24 @@ form {
 }
 </script>
 
-<h1><p id="custom"> Click the button to make a customized plan.</p></h1>
-<button type="button" onclick="customFunc()">Click here to make a customized plan.</button>
 
-<button onclick="customCatergories()">Click here to see your custom breakdown</button>
+<style>
+  .custom-button{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-<p id="monIncome">This is your monthly income: $</p>
-<p id="customNeccessities">This is what you should spend on necessities this month: $</p>
-<p id="customWants">This is what you should spend on wants this month: $</p>
-<p id="customSavings">This is what you should put into your savings account this month: $</p>
+  #showButton {
+    font-size: 24px;
+    padding: 10px 20px
+  }
+  </style>
 
 
-<!--
-<h1>Upload your PDF</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="pdf" accept=".pdf"><br><br>
-        <input type="submit" value="Upload">
-    </form>
--->
+
+
 
 </body>
 </home>
