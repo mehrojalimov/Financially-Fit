@@ -52,7 +52,6 @@ Our project allows people to mangage their monthly income through the straightfo
 
 
 ## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
 ![icon](financiallyfit.png)
 ![break](finalbreak.png)
 ![custom](finalcustom.png)
