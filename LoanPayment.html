@@ -1,87 +1,70 @@
 <!DOCTYPE html>
 <html>
-<home>
-<body>
-
 <head>
+  
   <div class="tab">
-    <button class="tablinks">
+    <button class="tablinks" onclick="openCity(event, 'Home')">
       <a id="nav-b" href="index.html">Home</a>
     </button>
 
     <button class="tablinks">
-        <a id="nav-b" href="SpendingTracker.html">SpendingTracker</a>
+      <a id="nav-b" href="SpendingTracker.html">SpendingTracker</a>
     </button>
 
-    <button class="tablinks">
+    <button class="tablinks" onclick="openCity(event, 'About Us')">
       <a id="nav-b" href="AboutUs.html">About Us</a>
     </button>
-    <button class="tablinks">
+    <button class="tablinks" onclick="openCity(event, 'Login')">
       <a id="nav-b" href="Login.html">Login</a>
     </button>
     <button class="tablinks">
-        <a id="nav-b" href="FinancialChart.html">Financial Chart</a>
+      <a id="nav-b" href="FinancialChart.html">Financial Chart</a>
     </button>
     <button class="tablinks">
       <a id="nav-b" href="LoanPayment.html">Loan Payment</a>
-  </button>
-  <button class="tablinks">
-    <a id="nav-b" href="userguide.html">User Guide</a>
-  </button>
-
+    </button>
+    <button class="tablinks">
+      <a id="nav-b" href="userguide.html">User Guide</a>
+    </button>
   </div>
-  
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>FinanciallyFit</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
-  <script src="script.js" type="text/javascript"</script>
-  <script>getIncome();</script>
+  
+  </script>
+  
 </head>
 
-
-<style>
-
-h2   {
-  color: black;
-  font-family:timesnewroman;
-}
-
-p    {
-  color: black;
-  font-family:timesnewroman;
-  }
-h1  {
-  color:black;
-  font-family:timesnewroman;
-  font-size:150%;
-}
-</style>
-</body>
-</home>
-
-<!DOCTYPE html>
-
-
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    <div id="loanCalculator">
-        <h2>Loan Calculator</h2>
-        <form>
-            <label for="loanAmount">Loan Amount:</label><br>
-            <input type="number" id="loanAmount" name="loanAmount"><br>
-            <label for="interestRate">Interest Rate (%):</label><br>
-            <input type="number" id="interestRate" name="interestRate"><br>
-            <label for="loanPeriod">Loan Period (Months):</label><br>
-            <input type="number" id="loanPeriod" name="loanPeriod"><br>
-            <input type="button" value="Calculate" onclick="calculateLoan()">
-        </form>
-        <p id="monthlyPayment"></p>
-        <p id="yearlyPayment"></p>
+<body id="loanPaymentPage">
+  <header>
+    <h1>Your Loan Payment Simple Calculator</h1>
+  </header>
+  <div id="contentContainer">
+    <div id="instructionSquare">
+      <h2>Instructions</h2>
+      <p>Loan Amount: Enter total money you plan to borrow.</p>
+      <p>Interest Rate: Input your annual interest rate in percentage.</p>
+      <p>Loan Period (Months): Input total repayment time in months.</p>
+      <p>Calculate: Click 'Calculate' to get monthly and yearly payment estimates.</p>
     </div>
-    <script src="script.js"></script>
+  
+    <div id="loanCalculator">
+      <h2>Loan Calculator</h2>
+      <form>
+        <label for="loanAmount">Loan Amount:</label><br>
+        <input type="number" id="loanAmount" name="loanAmount"><br>
+        <label for="interestRate">Interest Rate (%):</label><br>
+        <input type="number" id="interestRate" name="interestRate"><br>
+        <label for="loanPeriod">Loan Period (Months):</label><br>
+        <input type="number" id="loanPeriod" name="loanPeriod"><br>
+        <input type="button" value="Calculate" onclick="calculateLoan()">
+      </form>
+      <p id="monthlyPayment"></p>
+      <p id="yearlyPayment"></p>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
