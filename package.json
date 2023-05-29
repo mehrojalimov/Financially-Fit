@@ -6,9 +6,9 @@
   "license": "MIT",
   "dependencies": {
     "mongodb": "^5.5.0",
-    "passport-google-oauth": "^2.0.0"
+    "passport-google-oauth": "^2.0.0",
+    "sudo": "^1.0.3"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
