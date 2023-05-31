@@ -15,7 +15,7 @@
       <a id="nav-b" href="AboutUs.html">About Us</a>
     </button>
     <button class="tablinks" onclick="openCity(event, 'Login')">
-      <a id="nav-b" href="Login.html">Login</a>
+      <a id="nav-b" href="Login.php">Login</a>
     </button>
     <button class="tablinks">
       <a id="nav-b" href="FinancialChart.html">Financial Chart</a>
