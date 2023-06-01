@@ -11,14 +11,14 @@ $client = new MongoDB\Client('mongodb+srv://savittumuluri:Savit123@savitdb1.x6zw
 $collection = $client->FinanciallyFit->Users;
 $document = $collection->findOne(['username' => $username, 'password' => $password]);
 //var_dump($document['password']);
+
+$_SESSION['error2'] = false;
 if (is_null($document)) {
-    echo  "Login Failed for ". $username;
-    session_abort();
+    $_SESSION['error2'] = true;
+    $_SESSION['error1'] = false;
+    header('Location: Login.php');
 } else {
     $_SESSION["name"] = $document['fullname'];
     header('Location: index.php');
 }
-
-
-
 ?>

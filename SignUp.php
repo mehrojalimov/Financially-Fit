@@ -15,6 +15,7 @@ $password = filter_input(INPUT_POST, 'new_password');
 
 $document = $collection->findOne(['username' => $username]);
 
+$_SESSION['error1'] = false;
 // Check if the form has been submitted
 if ( is_null($document)) {
   // Retrieve the user's input
@@ -28,6 +29,8 @@ if ( is_null($document)) {
   header('Location: index.php');
 
   } else {
+    $_SESSION['error1'] = true;
+    $_SESSION['error2'] = false;
     header('Location: Login.php');
   }
 

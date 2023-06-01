@@ -82,11 +82,13 @@ h1  {
 </body>
 
 <?php
-//require_once __DIR__ . '/vendor/autoload.php';
-//$client = new MongoDB\Client('mongodb+srv://savittumuluri:Savit123@savitdb1.x6zw2zv.mongodb.net/');
-//$collection = $client->FinanciallyFit->Users;
-//$document = $collection->findOne(['email' => 'mynameissavit@gmail.com']);
-//var_dump($document);
+session_start();
+if ((array_key_exists('error1',$_SESSION)) && ($_SESSION['error1'])){
+  echo "Sorry, this username was already taken. Please try again!";
+}
+if ((array_key_exists('error2',$_SESSION)) && ($_SESSION['error2'] == true)){
+  echo  "Login failed, please try again.";
+}
 ?>
 
 </html>

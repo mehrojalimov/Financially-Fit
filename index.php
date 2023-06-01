@@ -1,5 +1,7 @@
 <?php
 session_start();
+$_SESSION['error1'] = false;
+$_SESSION['error2'] = false;
 ?>
 <html>
 <home>
