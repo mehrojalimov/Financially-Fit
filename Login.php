@@ -82,11 +82,11 @@ h1  {
 </body>
 
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
-$client = new MongoDB\Client('mongodb+srv://savittumuluri:Savit123@savitdb1.x6zw2zv.mongodb.net/');
-$collection = $client->FinanciallyFit->Users;
-$document = $collection->findOne(['email' => 'mynameissavit@gmail.com']);
-var_dump($document);
+//require_once __DIR__ . '/vendor/autoload.php';
+//$client = new MongoDB\Client('mongodb+srv://savittumuluri:Savit123@savitdb1.x6zw2zv.mongodb.net/');
+//$collection = $client->FinanciallyFit->Users;
+//$document = $collection->findOne(['email' => 'mynameissavit@gmail.com']);
+//var_dump($document);
 ?>
 
 </html>
