@@ -18,7 +18,7 @@ $_SESSION['error2'] = false;
 <body>
   <div class="tab">
     <button class="tablinks">
-      <a id="nav-b" href="index.html">Home</a>
+      <a id="nav-b" href="index.php">Home</a>
     </button>
 
     <button class="tablinks">
