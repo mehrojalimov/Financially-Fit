@@ -57,6 +57,9 @@ Our project allows people to mangage their monthly income through the straightfo
 ![custom](finalcustom.png)
 ![table](image3.png)
 ![piechart](image2.png)
+![loanpayment](loanPayment.jpeg)
+![moreinfo](minfopicbuttons.jpeg)
+
 
 ## Installation
 Through GitLab, on our FinanciallyFit project, navigate to the repository.
@@ -66,7 +69,8 @@ Install Git on your computer
 Clone the GitLab repository for our project using the link. This uses the line git clone git@gitlab.cci.drexel.edu:fds23/61/team-8/financiallyfit.git.
 Set up any required environment variables, such as API keys or database credentials to access the git environment.
 Configure the database. If the project requires a database, you will need to set up and configure the database according to the project's requirements. This may include creating a new database, configuring the database server, and setting up database users and permissions.
-Once the project and all files are on your personal file system, open the file titled "index.html" on your device.
+Open XAMPP control Panel and start Apache
+Type this into your browser: http://localhost/financiallyfit/
 This will open our project and you will be able to see it.
 
 ## Usage
@@ -120,6 +124,30 @@ A pie chart will form to show you your spending habits visually
 The process of entering data can be repeated as many times as needed.
 The pie chart will update accordingly and change distributions depending on the amount of money spent of each item
 For example I imputed the following items: - groceries:59.90:Needs - concert tickets:60.15:Wants
+
+
+Loan Payment
+
+Click on the Loan Payment tab
+Enter the amount of money you want for a loan in the white box labeled Loan Amount
+Then enter the interest amount applied to your loan in the white box labeled Interest Rate
+Then enter the number of months for your loan in the white box labeled loan period.
+For example, I put 90, 5.5, and 12
+A section will appear with the amount you will own monthly for your loan and how much you will pay yearly
+
+More Information
+
+Click on the More Information tab
+Click Twice on the button that says "Click Me to learn ways to save money on the food category"
+See this Information!
+Click Twice on the button that says "Click Me to learn ways to save money on the entertainment category"
+See this Information!
+
+Login
+
+Click the Login tab, and Sign Up or Log In if you already have an account.
+If you do not have an account, an error will pop up, and likewise if you try signing up with an already existing username.
+
 
 
 ## Support
