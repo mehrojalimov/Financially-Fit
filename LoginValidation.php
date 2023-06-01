@@ -9,7 +9,7 @@ $password = filter_input(INPUT_POST, 'password');
 require_once __DIR__ . '/vendor/autoload.php';
 $client = new MongoDB\Client('mongodb+srv://savittumuluri:Savit123@savitdb1.x6zw2zv.mongodb.net/');
 $collection = $client->FinanciallyFit->Users;
-$document = $collection->findOne(['email' => $username, 'password' => $password]);
+$document = $collection->findOne(['username' => $username, 'password' => $password]);
 //var_dump($document['password']);
 if (is_null($document)) {
     echo  "Login Failed for ". $username;
@@ -21,11 +21,4 @@ if (is_null($document)) {
 
 
 
-
-
-// Verify the password and redirect the user if the login is successful
-//else {
-    // Login unsuccessful, display an error message
-//    echo 'Incorrect username or password.';
-//}
 ?>

@@ -71,10 +71,10 @@ h1  {
 	  <form action="SignUp.php" method="post">
 		  <label for="new_username">New Username:</label>
 		  <input type="text" id="new_username" name="new_username" required>
+      <label for="new_username">Full Name:</label>
+		  <input type="text" id="new_name" name="new_name" required>
 		  <label for="new_password">New Password:</label>
 		  <input type="password" id="new_password" name="new_password" required>
-		  <label for="confirm_password">Confirm Password:</label>
-		  <input type="password" id="confirm_password" name="confirm_password" required>
 		  <input type="submit" value="Sign Up">
 	  </form>
 

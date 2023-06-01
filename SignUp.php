@@ -1,46 +1,34 @@
 <?php
+session_start();
+
 // Connect to the database
-$dbhost = 'localhost'; // Replace with your database host
-$dbname = 'mydatabase'; // Replace with your database name
-$dbuser = 'myusername'; // Replace with your database username
-$dbpass = 'mypassword'; // Replace with your database password
 
-$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+require_once __DIR__ . '/vendor/autoload.php';
+$client = new MongoDB\Client('mongodb+srv://savittumuluri:Savit123@savitdb1.x6zw2zv.mongodb.net/');
+$collection = $client->FinanciallyFit->Users;
 
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+$username = filter_input(INPUT_POST, 'new_username');
+$fullname = filter_input(INPUT_POST, 'new_name');
+$password = filter_input(INPUT_POST, 'new_password');
+
+
+
+$document = $collection->findOne(['username' => $username]);
 
 // Check if the form has been submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ( is_null($document)) {
   // Retrieve the user's input
-  $username = $_POST['username'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
+  $insertOneResult = $collection->insertOne([
+    'username' => $username,
+    'fullname' => $fullname,
+    'password' => $password,
+    
+  ]);
+  $_SESSION['name'] = $fullname;
+  header('Location: index.php');
 
-  // Check if the username already exists
-  $query = "SELECT * FROM users WHERE username = '$username'";
-  $result = $conn->query($query);
-
-  if ($result->num_rows > 0) {
-    // Display an error message if the username already exists
-    echo "Username already exists. Please choose a different username.";
   } else {
-    // Insert the new user's information into the database
-    $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
-    $result = $conn->query($query);
-
-    if ($result) {
-      // Display a success message if the user has been added to the database
-      echo "User registration successful.";
-    } else {
-      // Display an error message if the user could not be added to the database
-      echo "Error: " . $query . "<br>" . $conn->error;
-    }
+    header('Location: Login.php');
   }
 
-  // Close the database connection
-  $conn->close();
-}
 ?>
