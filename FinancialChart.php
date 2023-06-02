@@ -26,7 +26,7 @@ $document = $collection->findOne(['username' => $_SESSION['user']]);
           <a id="nav-b" href="Login.php">Login</a>
         </button>
         <button class="tablinks">
-          <a id="nav-b" href="FinancialChart.html">Financial Chart</a>
+          <a id="nav-b" href="FinancialChart.php">Financial Chart</a>
         </button>
         <button class="tablinks">
           <a id="nav-b" href="LoanPayment.html">Loan Payment</a>
@@ -107,20 +107,21 @@ $document = $collection->findOne(['username' => $_SESSION['user']]);
       data: data,
     });
     
+
     function doThings() {
         var moneyInfo = <?php echo json_encode($document["moneyInfo"]); ?>;
-    
+
         for (i in moneyInfo) {
-            addData2(i[0], i[1]);
+            addData2(moneyInfo[i][0], moneyInfo[i][1]);
         }
     }
 
-    function addData2(lab, num) {
+    function addData2(label, num) {
         
-      var numberInput = document.getElementById(num);
-      var labelInput = document.getElementById(lab);
-      var number = Number(numberInput.value);
-      var label = labelInput.value;
+
+    
+      var number = Number(num);
+      
 
       // update the data object
       var index = data.labels.indexOf(label);
