@@ -65,7 +65,7 @@ h1  {
 
 <h1 style="text-align:center; ">Spending Tracker</h1>
 
-    <form>
+    <form action="StoreMoney.php" method="post">
       <label for="statement">Statement:</label>
       <input type="text" id="statement" name="statement"><br><br>
       <label for="spending">Spending:</label>
@@ -77,6 +77,7 @@ h1  {
         <option value="savings">Savings</option>
       </select><br><br>
       <input type="button" value="Submit" onclick="submitSpending()">
+      <input type="submit" value="Export to Database">
     </form>
     <h1>Spending Summary</h1>
     <ul>

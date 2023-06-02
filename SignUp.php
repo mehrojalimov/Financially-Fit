@@ -23,6 +23,7 @@ if ( is_null($document)) {
     'username' => $username,
     'fullname' => $fullname,
     'password' => $password,
+    'moneyInfo' => []
     
   ]);
   $_SESSION['name'] = $fullname;

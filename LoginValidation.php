@@ -19,6 +19,7 @@ if (is_null($document)) {
     header('Location: Login.php');
 } else {
     $_SESSION["name"] = $document['fullname'];
+    $_SESSION["user"] = $document['username'];
     header('Location: index.php');
 }
 ?>
