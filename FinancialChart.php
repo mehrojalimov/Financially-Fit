@@ -65,7 +65,7 @@ $document = $collection->findOne(['username' => $_SESSION['user']]);
     <label for="number">Enter How Much You Spent:</label>
     <input type="number" id="number" name="number">
     <button type="button" onclick="addData()">Add to Chart</button>
-    <button type="button" onclick="addData2()">Import to Chart from Database</button>
+    <button type="button" onclick="doThings()">Import to Chart from Database</button>
 
   </form>
   <div class="chart-container">
@@ -74,6 +74,8 @@ $document = $collection->findOne(['username' => $_SESSION['user']]);
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
   <script src="script.js"></script>
   <script>
+
+
     // set the initial data
     var data = {
       labels: [],
@@ -104,15 +106,21 @@ $document = $collection->findOne(['username' => $_SESSION['user']]);
       type: "pie",
       data: data,
     });
-    var moneyInfo = <?php echo $document["moneyInfo"]; ?>;
     
-    for (i in moneyInfo) {
-        addData(i[0], i[1]);
+    function doThings() {
+        var moneyInfo = <?php echo json_encode($document["moneyInfo"]); ?>;
+    
+        for (i in moneyInfo) {
+            addData2(i[0], i[1]);
+        }
     }
 
-
-    function addData2(label, number) {
-
+    function addData2(lab, num) {
+        
+      var numberInput = document.getElementById(num);
+      var labelInput = document.getElementById(lab);
+      var number = Number(numberInput.value);
+      var label = labelInput.value;
 
       // update the data object
       var index = data.labels.indexOf(label);
