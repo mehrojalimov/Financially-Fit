@@ -13,6 +13,20 @@ export default function About() {
     if (videoRef.current) {
       // Don't auto-play due to browser restrictions
       setIsPlaying(false);
+      
+      // Test if video file is accessible
+      fetch('/123.mp4', { method: 'HEAD' })
+        .then(response => {
+          console.log('Video file check:', response.status, response.statusText);
+          if (!response.ok) {
+            console.log('Video file not accessible, showing fallback');
+            setVideoError(true);
+          }
+        })
+        .catch(error => {
+          console.log('Video file check failed:', error);
+          setVideoError(true);
+        });
     }
   }, []);
 
@@ -67,8 +81,7 @@ export default function About() {
                     console.log('Video error details:', videoRef.current?.error);
                     setVideoError(true);
                   }}
-                  preload="metadata"
-                  crossOrigin="anonymous"
+                  preload="none"
                 >
                   <source src="/123.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
