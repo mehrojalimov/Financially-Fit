@@ -1,5 +1,5 @@
 const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://financiallyfit-backend-production.up.railway.app/api'
+  ? 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://financiallyfit-backend-production.up.railway.app/api')
   : 'http://localhost:3001/api';
 
 // User API

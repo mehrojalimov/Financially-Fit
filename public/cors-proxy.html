@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CORS Proxy</title>
+</head>
+<body>
+    <h1>CORS Proxy for FinanciallyFit</h1>
+    <p>This is a simple CORS proxy to help with development.</p>
+    <script>
+        // Simple CORS proxy using a public service
+        const proxyUrl = 'https://api.allorigins.win/raw?url=';
+        const backendUrl = 'https://financiallyfit-backend-production.up.railway.app/api';
+        
+        console.log('CORS Proxy ready');
+        console.log('Backend URL:', backendUrl);
+        console.log('Proxy URL:', proxyUrl + encodeURIComponent(backendUrl));
+    </script>
+</body>
+</html>
