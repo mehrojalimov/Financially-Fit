@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DollarSign, TrendingUp, PiggyBank, Wallet } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useUser } from "@/contexts/UserContext";
+import { budgetAPI } from "@/services/api";
 
 export default function Home() {
   const [monthlyIncome, setMonthlyIncome] = useState<number>(0);
@@ -13,14 +15,75 @@ export default function Home() {
   const [customWants, setCustomWants] = useState<number>(30);
   const [customSavings, setCustomSavings] = useState<number>(20);
   const { toast } = useToast();
+  const { user } = useUser();
+
+  // Load budget from database when component mounts or user changes
+  useEffect(() => {
+    if (user) {
+      loadBudget();
+    }
+  }, [user]);
+
+  const loadBudget = async () => {
+    if (!user) return;
+    
+    try {
+      const data = await budgetAPI.getBudget(user.id);
+      console.log('Loaded budget data:', data); // Debug log
+      
+      if (data && data.monthly_income !== undefined) {
+        // Single budget object
+        setMonthlyIncome(data.monthly_income || 0);
+        setCustomNeeds(data.needs_percentage || 50);
+        setCustomWants(data.wants_percentage || 30);
+        setCustomSavings(data.savings_percentage || 20);
+      } else if (data && Array.isArray(data) && data.length > 0) {
+        // Array of budgets - get the most recent
+        const budget = data[0];
+        setMonthlyIncome(budget.monthly_income || 0);
+        setCustomNeeds(budget.needs_percentage || 50);
+        setCustomWants(budget.wants_percentage || 30);
+        setCustomSavings(budget.savings_percentage || 20);
+      }
+    } catch (error) {
+      console.error('Failed to load budget:', error);
+    }
+  };
+
+  const saveBudget = async () => {
+    if (!user) {
+      toast({
+        title: "Not Logged In",
+        description: "Please log in to save budget",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    try {
+      await budgetAPI.saveBudget(
+        user.id,
+        monthlyIncome,
+        customNeeds,
+        customWants,
+        customSavings
+      );
+      
+      toast({
+        title: "Budget Saved",
+        description: "Your budget has been saved to the database"
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to save budget. Please try again.",
+        variant: "destructive"
+      });
+    }
+  };
 
   const calculate503020 = () => {
     if (monthlyIncome <= 0) {
-      toast({
-        title: "Invalid Income",
-        description: "Please enter a valid monthly income",
-        variant: "destructive"
-      });
       return { needs: 0, wants: 0, savings: 0 };
     }
     return {
@@ -32,21 +95,11 @@ export default function Home() {
 
   const calculateCustom = () => {
     if (monthlyIncome <= 0) {
-      toast({
-        title: "Invalid Income",
-        description: "Please enter a valid monthly income",
-        variant: "destructive"
-      });
       return { needs: 0, wants: 0, savings: 0 };
     }
     
     const total = customNeeds + customWants + customSavings;
     if (total !== 100) {
-      toast({
-        title: "Invalid Percentages",
-        description: "Percentages must add up to 100%",
-        variant: "destructive"
-      });
       return { needs: 0, wants: 0, savings: 0 };
     }
     
@@ -59,6 +112,42 @@ export default function Home() {
 
   const standard = calculate503020();
   const custom = calculateCustom();
+
+  // Validation functions that can show toasts
+  const validateIncome = () => {
+    if (monthlyIncome <= 0) {
+      toast({
+        title: "Invalid Income",
+        description: "Please enter a valid monthly income",
+        variant: "destructive"
+      });
+      return false;
+    }
+    return true;
+  };
+
+  const validateCustomPercentages = () => {
+    const total = customNeeds + customWants + customSavings;
+    if (total !== 100) {
+      toast({
+        title: "Invalid Percentages",
+        description: "Percentages must add up to 100%",
+        variant: "destructive"
+      });
+      return false;
+    }
+    return true;
+  };
+
+  // Event handlers
+  const handleIncomeChange = (value: number) => {
+    setMonthlyIncome(value);
+    // Don't validate on every change - only validate when user clicks buttons
+  };
+
+  const handleCustomPercentageChange = () => {
+    // Don't validate on every change - only validate when user clicks buttons
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -84,13 +173,24 @@ export default function Home() {
             <div className="flex gap-4 max-w-md">
               <div className="flex-1">
                 <Label htmlFor="income">Amount ($)</Label>
-                <Input
-                  id="income"
-                  type="number"
-                  placeholder="5000"
-                  value={monthlyIncome || ""}
-                  onChange={(e) => setMonthlyIncome(Number(e.target.value))}
-                />
+                <div className="flex gap-2">
+                  <Input
+                    id="income"
+                    type="number"
+                    placeholder="5000"
+                    value={monthlyIncome || ""}
+                    onChange={(e) => handleIncomeChange(Number(e.target.value))}
+                  />
+                  <Button onClick={saveBudget} type="button">
+                    Save Budget
+                  </Button>
+                  <Button onClick={loadBudget} type="button" variant="outline">
+                    Load Budget
+                  </Button>
+                  <Button onClick={validateIncome} type="button" variant="secondary">
+                    Validate
+                  </Button>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -183,7 +283,9 @@ export default function Home() {
                       id="custom-needs"
                       type="number"
                       value={customNeeds}
-                      onChange={(e) => setCustomNeeds(Number(e.target.value))}
+                      onChange={(e) => {
+                        setCustomNeeds(Number(e.target.value));
+                      }}
                       min="0"
                       max="100"
                     />
@@ -194,7 +296,9 @@ export default function Home() {
                       id="custom-wants"
                       type="number"
                       value={customWants}
-                      onChange={(e) => setCustomWants(Number(e.target.value))}
+                      onChange={(e) => {
+                        setCustomWants(Number(e.target.value));
+                      }}
                       min="0"
                       max="100"
                     />
@@ -205,11 +309,19 @@ export default function Home() {
                       id="custom-savings"
                       type="number"
                       value={customSavings}
-                      onChange={(e) => setCustomSavings(Number(e.target.value))}
+                      onChange={(e) => {
+                        setCustomSavings(Number(e.target.value));
+                      }}
                       min="0"
                       max="100"
                     />
                   </div>
+                </div>
+                
+                <div className="flex justify-center">
+                  <Button onClick={validateCustomPercentages} type="button" variant="secondary">
+                    Validate Percentages
+                  </Button>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-3">

@@ -1,7 +1,31 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Target, TrendingUp, Users } from "lucide-react";
+import { Target, TrendingUp, Users, Play, Pause, Volume2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useState, useRef, useEffect } from "react";
 
 export default function About() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Auto-play video when component mounts
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(console.error);
+      setIsPlaying(true);
+    }
+  }, []);
+
+  const togglePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
@@ -13,6 +37,44 @@ export default function About() {
             Empowering you to take control of your financial future
           </p>
         </div>
+
+        {/* Project Pitch Video */}
+        <Card className="mb-12">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Volume2 className="h-5 w-5" />
+              Our Project Pitch
+            </CardTitle>
+            <CardDescription>
+              Listen to our team discuss the FinanciallyFit project and its vision
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="relative">
+              <video
+                ref={videoRef}
+                className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
+                controls
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                preload="metadata"
+              >
+                <source src="/123.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute top-4 right-4">
+                <Button
+                  onClick={togglePlayPause}
+                  size="sm"
+                  variant="secondary"
+                  className="bg-black/50 hover:bg-black/70 text-white"
+                >
+                  {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <div className="grid gap-8 md:grid-cols-3 mb-12">
           <Card>

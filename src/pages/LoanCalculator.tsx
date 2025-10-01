@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calculator } from "lucide-react";
+import { useUser } from "@/contexts/UserContext";
+import { loansAPI } from "@/services/api";
+import { useToast } from "@/hooks/use-toast";
 
 export default function LoanCalculator() {
   const [loanAmount, setLoanAmount] = useState("");
@@ -11,8 +14,33 @@ export default function LoanCalculator() {
   const [loanPeriod, setLoanPeriod] = useState("");
   const [monthlyPayment, setMonthlyPayment] = useState<number | null>(null);
   const [yearlyPayment, setYearlyPayment] = useState<number | null>(null);
+  const [savedLoans, setSavedLoans] = useState<any[]>([]);
+  const { user } = useUser();
+  const { toast } = useToast();
 
-  const calculateLoan = () => {
+  // Load saved loans from database when component mounts or user changes
+  useEffect(() => {
+    if (user) {
+      loadLoans();
+    }
+  }, [user]);
+
+  const loadLoans = async () => {
+    if (!user) return;
+    
+    try {
+      const data = await loansAPI.getLoans(user.id);
+      console.log('Loaded loans data:', data); // Debug log
+      
+      if (Array.isArray(data)) {
+        setSavedLoans(data);
+      }
+    } catch (error) {
+      console.error('Failed to load loans:', error);
+    }
+  };
+
+  const calculateLoan = async () => {
     const principal = parseFloat(loanAmount);
     const rate = parseFloat(interestRate) / 100 / 12;
     const months = parseFloat(loanPeriod);
@@ -29,6 +57,36 @@ export default function LoanCalculator() {
     if (isFinite(monthly) && monthly > 0) {
       setMonthlyPayment(monthly);
       setYearlyPayment(monthly * 12);
+
+      // Save loan to database if user is logged in
+      if (user) {
+        try {
+          const totalPayment = monthly * months;
+          await loansAPI.saveLoan(
+            user.id,
+            principal,
+            parseFloat(interestRate),
+            months,
+            monthly,
+            totalPayment
+          );
+          
+          toast({
+            title: "Loan Saved",
+            description: "Your loan calculation has been saved to the database"
+          });
+          
+          // Reload loans to show the new one
+          loadLoans();
+        } catch (error) {
+          console.error('Failed to save loan:', error);
+          toast({
+            title: "Error",
+            description: "Failed to save loan calculation",
+            variant: "destructive"
+          });
+        }
+      }
     } else {
       setMonthlyPayment(null);
       setYearlyPayment(null);
@@ -165,6 +223,46 @@ export default function LoanCalculator() {
               )}
             </CardContent>
           </Card>
+
+          {/* Saved Loans Section */}
+          {savedLoans.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Saved Loan Calculations</CardTitle>
+                <CardDescription>Your previous loan calculations</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {savedLoans.map((loan, index) => (
+                    <div key={loan.id || index} className="p-4 border rounded-lg">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                        <div>
+                          <p className="text-muted-foreground">Loan Amount</p>
+                          <p className="font-semibold">${loan.loan_amount?.toLocaleString()}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Interest Rate</p>
+                          <p className="font-semibold">{loan.interest_rate}%</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Period</p>
+                          <p className="font-semibold">{loan.loan_period} months</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Monthly Payment</p>
+                          <p className="font-semibold text-primary">${loan.monthly_payment?.toFixed(2)}</p>
+                        </div>
+                      </div>
+                      <div className="mt-2 text-xs text-muted-foreground">
+                        Total Payment: ${loan.total_payment?.toLocaleString()} | 
+                        Saved: {new Date(loan.created_at).toLocaleDateString()}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </div>
     </div>

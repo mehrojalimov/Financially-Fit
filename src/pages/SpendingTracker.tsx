@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,6 +7,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
 import { Trash2 } from "lucide-react";
+import { useUser } from "@/contexts/UserContext";
+import { expensesAPI } from "@/services/api";
 
 interface SpendingEntry {
   id: string;
@@ -21,6 +23,35 @@ export default function SpendingTracker() {
   const [category, setCategory] = useState<"wants" | "needs" | "savings">("wants");
   const [entries, setEntries] = useState<SpendingEntry[]>([]);
   const { toast } = useToast();
+  const { user } = useUser();
+
+  // Load expenses from database when component mounts or user changes
+  useEffect(() => {
+    if (user) {
+      loadExpenses();
+    }
+  }, [user]);
+
+  const loadExpenses = async () => {
+    if (!user) return;
+    
+    try {
+      const data = await expensesAPI.getExpenses(user.id);
+      console.log('Loaded expenses data:', data); // Debug log
+      
+      if (Array.isArray(data)) {
+        const formattedEntries = data.map((expense: any) => ({
+          id: expense.id.toString(),
+          statement: expense.description,
+          amount: expense.amount,
+          category: expense.category
+        }));
+        setEntries(formattedEntries);
+      }
+    } catch (error) {
+      console.error('Failed to load expenses:', error);
+    }
+  };
 
   const totals = entries.reduce(
     (acc, entry) => {
@@ -37,7 +68,7 @@ export default function SpendingTracker() {
     savings: totals.total > 0 ? (totals.savings / totals.total) * 100 : 0,
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!statement.trim() || !amount || parseFloat(amount) <= 0) {
@@ -49,22 +80,53 @@ export default function SpendingTracker() {
       return;
     }
 
-    const newEntry: SpendingEntry = {
-      id: Date.now().toString(),
-      statement,
-      amount: parseFloat(amount),
-      category,
-    };
+    if (!user) {
+      toast({
+        title: "Not Logged In",
+        description: "Please log in to add expenses",
+        variant: "destructive"
+      });
+      return;
+    }
 
-    setEntries([...entries, newEntry]);
-    setStatement("");
-    setAmount("");
-    setCategory("wants");
-    
-    toast({
-      title: "Entry Added",
-      description: "Your spending entry has been recorded",
-    });
+    try {
+      console.log('Adding expense:', { userId: user.id, description: statement.trim(), amount: parseFloat(amount), category });
+      
+      const newEntry = await expensesAPI.addExpense(
+        user.id,
+        statement.trim(),
+        parseFloat(amount),
+        category,
+        new Date().toISOString()
+      );
+
+      console.log('API response:', newEntry);
+
+      // Add to local state
+      const formattedEntry: SpendingEntry = {
+        id: newEntry.expenseId.toString(),
+        statement: statement.trim(),
+        amount: parseFloat(amount),
+        category
+      };
+
+      setEntries([...entries, formattedEntry]);
+      setStatement("");
+      setAmount("");
+      setCategory("wants");
+
+      toast({
+        title: "Expense Added",
+        description: "Your expense has been saved to the database"
+      });
+    } catch (error) {
+      console.error('Error adding expense:', error);
+      toast({
+        title: "Error",
+        description: `Failed to save expense: ${error.message}`,
+        variant: "destructive"
+      });
+    }
   };
 
   const handleDelete = (id: string) => {
