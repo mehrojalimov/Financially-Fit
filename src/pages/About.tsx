@@ -1,43 +1,44 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Target, TrendingUp, Users, Play, Pause, Volume2, User } from "lucide-react";
+import { Target, TrendingUp, Users, Play, Pause, Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useRef, useEffect } from "react";
 
 export default function About() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Initialize video state when component mounts
+  // Test if video file is accessible when component mounts
   useEffect(() => {
-    if (videoRef.current) {
-      // Don't auto-play due to browser restrictions
-      setIsPlaying(false);
-      
-      // Test if video file is accessible
-      fetch('/123.mp4', { method: 'HEAD' })
-        .then(response => {
-          console.log('Video file check:', response.status, response.statusText);
-          if (!response.ok) {
-            console.log('Video file not accessible, showing fallback');
-            setVideoError(true);
-          }
-        })
-        .catch(error => {
-          console.log('Video file check failed:', error);
+    fetch('/123.mp4', { method: 'HEAD' })
+      .then(response => {
+        console.log('Video file check:', response.status, response.statusText);
+        if (!response.ok) {
+          console.log('Video file not accessible, showing fallback');
           setVideoError(true);
-        });
-    }
+        }
+      })
+      .catch(error => {
+        console.log('Video file check failed:', error);
+        setVideoError(true);
+      });
   }, []);
 
-  const togglePlayPause = () => {
+  const togglePlayPause = async () => {
     if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
+      try {
+        if (isPlaying) {
+          videoRef.current.pause();
+          setIsPlaying(false);
+        } else {
+          await videoRef.current.play();
+          setIsPlaying(true);
+        }
+      } catch (error) {
+        console.error('Error playing video:', error);
+        setVideoError(true);
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
@@ -73,15 +74,26 @@ export default function About() {
                   controls
                   onPlay={() => setIsPlaying(true)}
                   onPause={() => setIsPlaying(false)}
-                  onLoadStart={() => console.log('Video load started')}
-                  onCanPlay={() => console.log('Video can play')}
+                  onLoadStart={() => {
+                    console.log('Video load started');
+                    setVideoLoaded(false);
+                  }}
+                  onCanPlay={() => {
+                    console.log('Video can play');
+                    setVideoLoaded(true);
+                  }}
+                  onLoadedData={() => {
+                    console.log('Video data loaded');
+                    setVideoLoaded(true);
+                  }}
                   onError={(e) => {
                     console.error('Video error:', e);
                     console.log('Video src:', videoRef.current?.src);
                     console.log('Video error details:', videoRef.current?.error);
                     setVideoError(true);
+                    setVideoLoaded(false);
                   }}
-                  preload="none"
+                  preload="metadata"
                 >
                   <source src="/123.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
@@ -99,7 +111,7 @@ export default function About() {
                 </div>
               )}
               
-              {!videoError && (
+              {!videoError && videoLoaded && (
                 <div className="absolute top-4 right-4">
                   <Button
                     onClick={togglePlayPause}
@@ -113,7 +125,12 @@ export default function About() {
               )}
               
               <div className="mt-4 text-center text-sm text-muted-foreground">
-                <p>Click the play button to watch our project pitch video</p>
+                {!videoError && !videoLoaded && (
+                  <p className="text-primary">Loading video...</p>
+                )}
+                {!videoError && videoLoaded && (
+                  <p>Click the play button to watch our project pitch video</p>
+                )}
                 <p className="text-xs mt-1">If video doesn't load, try refreshing the page</p>
               </div>
             </div>
