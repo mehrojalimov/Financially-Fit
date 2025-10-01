@@ -7,11 +7,11 @@ export default function About() {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Auto-play video when component mounts
+  // Initialize video state when component mounts
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(console.error);
-      setIsPlaying(true);
+      // Don't auto-play due to browser restrictions
+      setIsPlaying(false);
     }
   }, []);
 
@@ -57,9 +57,14 @@ export default function About() {
                 controls
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
+                onError={(e) => {
+                  console.error('Video error:', e);
+                  console.log('Video src:', videoRef.current?.src);
+                }}
                 preload="metadata"
               >
                 <source src="/123.mp4" type="video/mp4" />
+                <source src="./123.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               <div className="absolute top-4 right-4">
@@ -71,6 +76,9 @@ export default function About() {
                 >
                   {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
                 </Button>
+              </div>
+              <div className="mt-4 text-center text-sm text-muted-foreground">
+                <p>Click the play button to watch our project pitch video</p>
               </div>
             </div>
           </CardContent>
