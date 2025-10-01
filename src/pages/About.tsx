@@ -7,13 +7,13 @@ export default function About() {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Auto-play video when component mounts
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(console.error);
-      setIsPlaying(true);
-    }
-  }, []);
+// Initialize video when component mounts (no auto-play due to browser restrictions)
+useEffect(() => {
+if (videoRef.current) {
+// Don't auto-play - browsers block this without user interaction
+setIsPlaying(false);
+}
+}, []);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -45,9 +45,9 @@ export default function About() {
               <Volume2 className="h-5 w-5" />
               Our Project Pitch
             </CardTitle>
-            <CardDescription>
-              Listen to our team discuss the FinanciallyFit project and its vision
-            </CardDescription>
+<CardDescription>
+Listen to our team discuss the FinanciallyFit project and its vision. Click play to start the video.
+</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="relative">
