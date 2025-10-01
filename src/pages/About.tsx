@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 
 export default function About() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Initialize video state when component mounts
@@ -51,34 +52,56 @@ export default function About() {
           </CardHeader>
           <CardContent>
             <div className="relative">
-              <video
-                ref={videoRef}
-                className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
-                controls
-                onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)}
-                onError={(e) => {
-                  console.error('Video error:', e);
-                  console.log('Video src:', videoRef.current?.src);
-                }}
-                preload="metadata"
-              >
-                <source src="/123.mp4" type="video/mp4" />
-                <source src="./123.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="absolute top-4 right-4">
-                <Button
-                  onClick={togglePlayPause}
-                  size="sm"
-                  variant="secondary"
-                  className="bg-black/50 hover:bg-black/70 text-white"
+              {!videoError ? (
+                <video
+                  ref={videoRef}
+                  className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
+                  controls
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                  onLoadStart={() => console.log('Video load started')}
+                  onCanPlay={() => console.log('Video can play')}
+                  onError={(e) => {
+                    console.error('Video error:', e);
+                    console.log('Video src:', videoRef.current?.src);
+                    console.log('Video error details:', videoRef.current?.error);
+                    setVideoError(true);
+                  }}
+                  preload="metadata"
+                  crossOrigin="anonymous"
                 >
-                  {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-                </Button>
-              </div>
+                  <source src="/123.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <div className="w-full max-w-4xl mx-auto rounded-lg shadow-lg bg-muted/50 p-12 text-center">
+                  <Volume2 className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
+                  <h3 className="text-lg font-semibold mb-2">Project Pitch Video</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Our team discusses the FinanciallyFit project and its vision
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Video temporarily unavailable. Please check back later or contact us for more information.
+                  </p>
+                </div>
+              )}
+              
+              {!videoError && (
+                <div className="absolute top-4 right-4">
+                  <Button
+                    onClick={togglePlayPause}
+                    size="sm"
+                    variant="secondary"
+                    className="bg-black/50 hover:bg-black/70 text-white"
+                  >
+                    {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                  </Button>
+                </div>
+              )}
+              
               <div className="mt-4 text-center text-sm text-muted-foreground">
                 <p>Click the play button to watch our project pitch video</p>
+                <p className="text-xs mt-1">If video doesn't load, try refreshing the page</p>
               </div>
             </div>
           </CardContent>
