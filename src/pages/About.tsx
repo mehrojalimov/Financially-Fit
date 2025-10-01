@@ -155,7 +155,7 @@ export default function About() {
                 <span className="text-primary font-bold text-lg">MA</span>
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-lg">Mehroj A.</h3>
+                <h3 className="font-semibold text-lg">Mehroj Alimov</h3>
                 <p className="text-muted-foreground">Drexel University College of Computing and Information</p>
                 <div className="mt-2">
                   <a 
