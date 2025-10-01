@@ -4,6 +4,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Old PHP files (not needed for React app)
+*.php
+vendor/
+composer.json
+composer.lock
+
 # Production build
 dist/
 build/
