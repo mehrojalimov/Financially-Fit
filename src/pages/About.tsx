@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Target, TrendingUp, Users, Play, Pause, Volume2 } from "lucide-react";
+import { Target, TrendingUp, Users, Play, Pause, Volume2, GraduationCap, Code, Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useRef, useEffect } from "react";
 
@@ -117,7 +117,7 @@ Listen to our team discuss the FinanciallyFit project and its vision. Click play
           </Card>
         </div>
 
-        <Card className="max-w-4xl mx-auto">
+        <Card className="max-w-4xl mx-auto mb-12">
           <CardHeader>
             <CardTitle>What is FinanciallyFit?</CardTitle>
             <CardDescription>Your complete personal finance companion</CardDescription>
@@ -139,6 +139,94 @@ Listen to our team discuss the FinanciallyFit project and its vision. Click play
             </p>
           </CardContent>
         </Card>
+
+        {/* Developer Information Section */}
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Meet Our Development Team</h2>
+            <p className="text-lg text-muted-foreground">
+              First-year Computer Science students at Drexel University passionate about helping others manage their finances
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3 mb-12">
+            {/* Mehroj Alimov */}
+            <Card className="text-center">
+              <CardHeader>
+                <div className="mx-auto w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4">
+                  <Code className="h-12 w-12 text-white" />
+                </div>
+                <CardTitle className="text-xl">Mehroj Alimov</CardTitle>
+                <CardDescription>President of Drexel Speaks</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Computer Science major with a minor in Entrepreneurship. A passionate developer with expertise in various programming languages and a knack for problem-solving. Believes in the transformative power of technology and its ability to make a positive impact.
+                </p>
+                <div className="flex justify-center gap-2">
+                  <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Computer Science</span>
+                  <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Entrepreneurship</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Megan Ehrnfeldt */}
+            <Card className="text-center">
+              <CardHeader>
+                <div className="mx-auto w-24 h-24 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mb-4">
+                  <GraduationCap className="h-12 w-12 text-white" />
+                </div>
+                <CardTitle className="text-xl">Megan Ehrnfeldt</CardTitle>
+                <CardDescription>Student-Athlete & Developer</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">
+                  First-year student-athlete at Drexel University. Currently majoring in Computer Science and minoring in Data Science. Also a member of the swim team, balancing academics and athletics.
+                </p>
+                <div className="flex justify-center gap-2">
+                  <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Computer Science</span>
+                  <span className="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Data Science</span>
+                  <span className="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">Swim Team</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Savit Tumuluri */}
+            <Card className="text-center">
+              <CardHeader>
+                <div className="mx-auto w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mb-4">
+                  <Database className="h-12 w-12 text-white" />
+                </div>
+                <CardTitle className="text-xl">Savit Tumuluri</CardTitle>
+                <CardDescription>Computer Science Student</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">
+                  First-year student at Drexel University currently majoring in Computer Science. Passionate about technology and software development, contributing to the team's technical expertise.
+                </p>
+                <div className="flex justify-center gap-2">
+                  <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Computer Science</span>
+                  <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Developer</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Team Mission Statement */}
+          <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <h3 className="text-xl font-semibold text-foreground mb-4">Our Team's Mission</h3>
+                <p className="text-muted-foreground max-w-4xl mx-auto">
+                  As first-year computer science students at Drexel University, we developed this website to help other college students and everyone in general control their spending urges and manage their spending habits. Our website allows you to input your monthly income and see the perfect breakdown of spending on your needs, wants, and necessities for that month. You can also input your spending for the month and see your specific breakdown in those categories.
+                </p>
+                <p className="text-muted-foreground mt-4 font-medium">
+                  We hope this website helps you achieve your financial goals! 💰
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
