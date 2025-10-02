@@ -157,16 +157,16 @@ Listen to our team discuss the FinanciallyFit project and its vision. Click play
                   <Code className="h-16 w-16 text-white" />
                 </div>
                 <CardTitle className="text-3xl font-bold">Mehroj Alimov</CardTitle>
-                <CardDescription className="text-lg">President of Drexel Speaks & Lead Developer</CardDescription>
+                <CardDescription className="text-lg">Lead Developer & Computer Science Student</CardDescription>
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Computer Science major with a minor in Entrepreneurship. A passionate developer with expertise in various programming languages and a knack for problem-solving. Believes in the transformative power of technology and its ability to make a positive impact. Let's collaborate and drive change through creative and impactful digital solutions.
+                  Computer Science major with a minor in Finance. A passionate developer with expertise in various programming languages and a knack for problem-solving. Believes in the transformative power of technology and its ability to make a positive impact. Let's collaborate and drive change through creative and impactful digital solutions.
                 </p>
                 <div className="flex justify-center gap-3 mb-6">
                   <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full font-medium">Computer Science</span>
-                  <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full font-medium">Entrepreneurship</span>
-                  <span className="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full font-medium">President</span>
+                  <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full font-medium">Finance</span>
+                  <span className="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full font-medium">Developer</span>
                 </div>
                 <Button 
                   asChild 
