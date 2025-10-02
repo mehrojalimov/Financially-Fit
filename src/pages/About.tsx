@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Target, TrendingUp, Users, Play, Pause, Volume2, GraduationCap, Code, Database } from "lucide-react";
+import { Target, TrendingUp, Users, Play, Pause, Volume2, GraduationCap, Code, Database, Linkedin, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useRef, useEffect } from "react";
 
@@ -149,41 +149,60 @@ Listen to our team discuss the FinanciallyFit project and its vision. Click play
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3 mb-12">
-            {/* Mehroj Alimov */}
-            <Card className="text-center">
-              <CardHeader>
-                <div className="mx-auto w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4">
-                  <Code className="h-12 w-12 text-white" />
+          {/* Mehroj Alimov - Main Developer */}
+          <div className="mb-12">
+            <Card className="max-w-4xl mx-auto bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200">
+              <CardHeader className="text-center">
+                <div className="mx-auto w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-6">
+                  <Code className="h-16 w-16 text-white" />
                 </div>
-                <CardTitle className="text-xl">Mehroj Alimov</CardTitle>
-                <CardDescription>President of Drexel Speaks</CardDescription>
+                <CardTitle className="text-3xl font-bold">Mehroj Alimov</CardTitle>
+                <CardDescription className="text-lg">President of Drexel Speaks & Lead Developer</CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Computer Science major with a minor in Entrepreneurship. A passionate developer with expertise in various programming languages and a knack for problem-solving. Believes in the transformative power of technology and its ability to make a positive impact.
+              <CardContent className="text-center">
+                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                  Computer Science major with a minor in Entrepreneurship. A passionate developer with expertise in various programming languages and a knack for problem-solving. Believes in the transformative power of technology and its ability to make a positive impact. Let's collaborate and drive change through creative and impactful digital solutions.
                 </p>
-                <div className="flex justify-center gap-2">
-                  <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Computer Science</span>
-                  <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Entrepreneurship</span>
+                <div className="flex justify-center gap-3 mb-6">
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full font-medium">Computer Science</span>
+                  <span className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full font-medium">Entrepreneurship</span>
+                  <span className="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full font-medium">President</span>
                 </div>
+                <Button 
+                  asChild 
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                >
+                  <a 
+                    href="https://www.linkedin.com/in/mehrojalimov/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                    Connect on LinkedIn
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                </Button>
               </CardContent>
             </Card>
+          </div>
 
+          {/* Other Team Members - Smaller Cards */}
+          <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto mb-12">
             {/* Megan Ehrnfeldt */}
             <Card className="text-center">
               <CardHeader>
-                <div className="mx-auto w-24 h-24 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mb-4">
-                  <GraduationCap className="h-12 w-12 text-white" />
+                <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mb-3">
+                  <GraduationCap className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle className="text-xl">Megan Ehrnfeldt</CardTitle>
+                <CardTitle className="text-lg">Megan Ehrnfeldt</CardTitle>
                 <CardDescription>Student-Athlete & Developer</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                  First-year student-athlete at Drexel University. Currently majoring in Computer Science and minoring in Data Science. Also a member of the swim team, balancing academics and athletics.
+                <p className="text-xs text-muted-foreground mb-3">
+                  First-year student-athlete at Drexel University. Currently majoring in Computer Science and minoring in Data Science. Also a member of the swim team.
                 </p>
-                <div className="flex justify-center gap-2">
+                <div className="flex justify-center gap-1 flex-wrap">
                   <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Computer Science</span>
                   <span className="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Data Science</span>
                   <span className="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">Swim Team</span>
@@ -194,17 +213,17 @@ Listen to our team discuss the FinanciallyFit project and its vision. Click play
             {/* Savit Tumuluri */}
             <Card className="text-center">
               <CardHeader>
-                <div className="mx-auto w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mb-4">
-                  <Database className="h-12 w-12 text-white" />
+                <div className="mx-auto w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mb-3">
+                  <Database className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle className="text-xl">Savit Tumuluri</CardTitle>
+                <CardTitle className="text-lg">Savit Tumuluri</CardTitle>
                 <CardDescription>Computer Science Student</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                  First-year student at Drexel University currently majoring in Computer Science. Passionate about technology and software development, contributing to the team's technical expertise.
+                <p className="text-xs text-muted-foreground mb-3">
+                  First-year student at Drexel University currently majoring in Computer Science. Passionate about technology and software development.
                 </p>
-                <div className="flex justify-center gap-2">
+                <div className="flex justify-center gap-1 flex-wrap">
                   <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Computer Science</span>
                   <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Developer</span>
                 </div>
